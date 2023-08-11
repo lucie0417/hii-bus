@@ -1,25 +1,15 @@
 import { useState, useRef } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import SignupModal from "./SignupModal";
+import SignupModal from './SignupModal';
 
 
-const LoginModal = ({ isModalOpen, setIsModalOpen }) => {
+const LoginModal = ({ setMenuOpen, isLoginModalOpen, setIsLoginModalOpen }) => {
 	const emailRef = useRef()
 	const passwordRef = useRef()
 	const { login, setIsLoggedIn } = useAuth()
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false);
 	const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
-	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
-	const openSignupModal = () => {
-		setIsLoginModalOpen(false);
-		setIsSignupModalOpen(true);
-	}
-
-	// const closeLoginModal = () => {
-	// 	setIsModalOpen(false);
-	// }
 
 
 	async function handleSubmit(e) {
@@ -28,11 +18,12 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }) => {
 			setError('')
 			setLoading(true)
 			await login(emailRef.current.value, passwordRef.current.value);
-			console.log('Log in success');
-			setIsLoginModalOpen(false)
-			setIsLoggedIn(true)
+			// console.log('Log in success');
+			setMenuOpen(false);
+			setIsLoginModalOpen(false);
+			setIsLoggedIn(true);
 		} catch (error) {
-			setError('Failed to log in!')
+			setError('登入失敗，請確認信箱及密碼是否正確')
 		}
 		setLoading(false)
 	}
@@ -54,8 +45,15 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }) => {
 								<h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
 									Login to Hi Bus!
 								</h3>
-								<button onClick={() => setIsLoginModalOpen(false)} className='text-white text-lg mb-4'>X</button>
+								<button onClick={() => setIsLoginModalOpen(false)} className='text-white text-lg mb-4'>
+									X
+								</button>
 							</div>
+							{error && (
+								<div className='w-full h-1/12 py-1.5 mb-4 bg-yellow-500/80 text-nav-dark/80 text-sm text-center rounded-md'>
+									{error}
+								</div>
+							)}
 							<form className="space-y-6" onSubmit={handleSubmit}>
 
 								<div>
@@ -75,7 +73,7 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }) => {
 								</button>
 								<div className="text-sm font-medium text-gray-500 dark:text-gray-300">
 									還沒有帳戶嗎？&ensp;
-									<button onClick={openSignupModal} className="text-gradient-end hover:underline dark:text-gradient-end">
+									<button onClick={() => setIsSignupModalOpen(true)} className="text-gradient-end hover:underline dark:text-gradient-end">
 										加入會員
 									</button>
 								</div>
@@ -85,8 +83,10 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }) => {
 				</div>
 			</div>
 
-			{!isLoginModalOpen && isSignupModalOpen &&
-				<SignupModal />
+			{isSignupModalOpen &&
+				<SignupModal setMenuOpen={setMenuOpen}
+					setIsSignupModalOpen={setIsSignupModalOpen}
+					setIsLoginModalOpen={setIsLoginModalOpen} />
 			}
 		</>
 	)

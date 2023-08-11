@@ -7,13 +7,13 @@ import LoginModal from "../components/LoginModal";
 
 
 const Navbar = ({ setFavorites }) => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const [error, setError] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const { currentUser, logout, isLoggedIn, setIsLoggedIn } = useAuth()
 
 	const openModal = () => {
-		setIsModalOpen(true);
+		setIsLoginModalOpen(true);
 	}
 
 	const toggleMenu = () => {
@@ -139,9 +139,10 @@ const Navbar = ({ setFavorites }) => {
 			</nav>
 			<div className="h-1.5 animate-color "></div>
 
-			{isModalOpen &&
-				<LoginModal isModalOpen={isModalOpen}
-					setIsModalOpen={setIsModalOpen} />
+			{isLoginModalOpen &&
+				<LoginModal setMenuOpen={setMenuOpen}
+					isLoginModalOpen={isLoginModalOpen}
+					setIsLoginModalOpen={setIsLoginModalOpen} />
 			}
 		</>
 	)
