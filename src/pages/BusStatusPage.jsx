@@ -9,6 +9,7 @@ import BusInformation from "../components/BusInformation";
 import Loading from "../components/Loading";
 import getAuthorizationHeader from "../util/getAuthorizationHeader";
 import BusMap from "../util/BusMap";
+import { useAuth } from "../contexts/AuthContext";
 
 
 const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFavorites }) => {
@@ -19,6 +20,7 @@ const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFav
 	const api = `https://tdx.transportdata.tw/api/basic/v2/Bus/`;
 	const navigate = useNavigate();
 	const { routeName } = useParams();
+	const { currentUser } = useAuth();
 	const [isOneDirection, setIsOneDirection] = useState({
 		leftBtn: false,
 		rightBtn: false
@@ -219,13 +221,13 @@ const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFav
 
 	// 加入收藏功能
 	const addToFavorites = (item) => {
-		// 檢查 localStorage 中是否已經存在相同的項目
+		// 檢查  中是否已經存在相同的項目
 		const isDuplicate = favorites.some((fav) => fav.id === item.id);
 		setIsHighlighted(!isHighlighted);
 		if (isDuplicate) {
 			// 有重複就移除 localStorage 中的資料
 			const updatedFavorites = favorites.filter((fav) => fav.id !== item.id);
-			localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+			localStorage.setItem(currentUser.displayName, JSON.stringify(updatedFavorites));
 			// console.log("Item already exists in localStorage");
 			return;
 		}
@@ -233,7 +235,7 @@ const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFav
 		setFavorites((prevFavorites) => [...prevFavorites, item]);
 		// 加入新項目至 localStorage 中的資料
 		const updatedFavorites = [...favorites, item];
-		localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+		localStorage.setItem(currentUser.displayName, JSON.stringify(updatedFavorites));
 		// 切換愛心顏色
 		toggleHeartColor();
 	}
@@ -253,7 +255,7 @@ const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFav
 					<Loading />
 				</div>) : (
 					<div className="h-screen lg:h-screen lg:flex lg:flex-col">
-						<Navbar />
+						<Navbar setFavorites={setFavorites}/>
 						<div className="relative bg-white w-full h-auto 
 										md:static
 										lg:flex lg:h-full lg:p-5 lg:bg-gray-100">

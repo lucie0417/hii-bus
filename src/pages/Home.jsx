@@ -9,16 +9,18 @@ import DBackground from "../images/D-bg.svg";
 import Bus from "../images/M-bus-gif.png";
 
 
-const Home = ({ routeNumber, setRouteNumber, routeName, setRouteName, city, setCity, CityObj }) => {
+const Home = ({ routeNumber, setRouteNumber, routeName, setRouteName, city, setCity, CityObj, setFavorites }) => {
+
 	return (
 		<>
 			<div className="h-screen">
 				<main>
-					<Navbar className="z-50" />
+					<Navbar className=""
+						setFavorites={setFavorites} />
 
-					<div className="grid z-30 justify-items-center mt-14 gap-3 md:gap-5 lg:gap-7">
-						<img src={MLogo} alt="hi bus logo" className="z-30 lg:hidden" />
-						<img src={DLogo} alt="hi bus logo" className="z-30 hidden md:hidden lg:block mt-7" />
+					<div className="grid justify-items-center mt-14 gap-3 md:gap-5 lg:gap-7">
+						<img src={MLogo} alt="hi bus logo" className=" lg:hidden" />
+						<img src={DLogo} alt="hi bus logo" className=" hidden md:hidden lg:block mt-7" />
 						<h1 className="z-30 font-chinese">今天想搭乘哪輛公車呢？</h1>
 					</div>
 
@@ -31,7 +33,7 @@ const Home = ({ routeNumber, setRouteNumber, routeName, setRouteName, city, setC
 						setCity={setCity}
 						CityObj={CityObj} />
 
-					{/* 背景圖 */}
+
 					<div>
 						<img src={MBackground} className="-z-10 absolute bottom-24 w-full object-cover block md:hidden" alt="background" />
 						<img src={TBackground} className="-z-10 absolute bottom-32 w-full object-cover hidden md:block lg:hidden" alt="background" />

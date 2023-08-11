@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 
-const NoResult = () => {
+const NoResult = ({ setFavorites}) => {
 	// 自動跳轉回首頁
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -16,7 +16,7 @@ const NoResult = () => {
 	return (
 		<>
 			<div className="flex flex-col h-screen">
-				<Navbar />
+				<Navbar setFavorites={setFavorites}/>
 
 				<div className="flex h-full text-center justify-center items-center">
 					<p className="text-nav-dark font-medium text-xl leading-8">Oh，找不到符合搜尋的結果，<br />

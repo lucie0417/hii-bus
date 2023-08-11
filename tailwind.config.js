@@ -13,6 +13,9 @@ module.exports = {
         'gradient-start': '#5468FF',
         'gradient-end': '#01D8D0',
         'highlight': '#00DCD1',
+        'hover-green': '#00b0a7',
+        'hover-light-green':'#19dfd5',
+        'ring-green': '#b2f4f1'
       },
     },
     fontFamily: {

@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 
 
-const NearByBusStop = ({ CityObj, city }) => {
+const NearByBusStop = ({ CityObj, city, setFavorites }) => {
 	const [stopInfo, setStopInfo] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 	const api = `https://tdx.transportdata.tw/api/basic/v2/Bus/`;
@@ -112,11 +112,11 @@ const NearByBusStop = ({ CityObj, city }) => {
 				<Loading />
 			</div>) : (
 				<div className="h-screen">
-					<Navbar />
-					<main className="h-full lg:flex">
+					<Navbar setFavorites={setFavorites} />
+					<main className="h-full lg:flex ">
 						{/* 地圖區塊 */}
 						<div className="h-1/2 md:h-1/2
-								lg:min-h-screen lg:w-2/3">
+								lg:min-h-screen lg:w-2/3 ">
 							<NearByMap className="w-auto"
 								finalNearbyStops={finalNearbyStops}
 								location={location}
