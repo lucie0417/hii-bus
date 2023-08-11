@@ -47,7 +47,7 @@ const MyFavorite = ({ favorites, setFavorites }) => {
 			<div className="flex flex-col h-screen bg-white
 							md:bg-opacity-0">
 
-				<Navbar setFavorites={setFavorites}/>
+				<Navbar setFavorites={setFavorites} />
 
 				<div className="container mx-auto justify-center flex flex-cols-3 items-center 
 								md:mt-8">
@@ -68,10 +68,14 @@ const MyFavorite = ({ favorites, setFavorites }) => {
 										Oh，您尚未登入唷，趕快登入啟用收藏功能吧！
 									</p>
 									<div className="flex justify-center ">
-										<button onClick={openModal} className="flex px-1.5 items-center" to="/nearbystop">
+										{/* <button onClick={openModal} className="flex px-1.5 items-center">
 											<IoPerson className="mx-1 text-gradient-start" />
 											登入Hi Bus!會員
-										</button>
+										</button> */}
+										<Link className="flex px-1.5 items-center" to="/nearbystop">
+											<IoLocationSharp className="mx-1 text-yellow-400" />
+											查看附近站牌
+										</Link>
 										<Link className="flex px-1.5 items-center" to="/">
 											<IoSearch className="mx-1 text-gradient-start" />
 											搜尋公車路線

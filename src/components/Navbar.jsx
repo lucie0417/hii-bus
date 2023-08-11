@@ -51,9 +51,9 @@ const Navbar = ({ setFavorites }) => {
 
 					{/* 打招呼 */}
 					{isLoggedIn && (
-						<div className="text-white text-md tracking-wider ml-28
+						<div className="w-[150px] text-white text-md tracking-wider ml-28
 									md:ml-[280px]
-									lg:ml-[440px]">
+									lg:ml-[700px]">
 							{`Hi! ${currentUser?.displayName}`}
 						</div>
 					)}
