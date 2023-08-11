@@ -32,11 +32,6 @@ const LoginModal = ({ setMenuOpen, isLoginModalOpen, setIsLoginModalOpen }) => {
 
 	return (
 		<>
-			{error && (
-				<div className='text-nav-dark'>
-					{error}
-				</div>
-			)}
 			<div className='fixed inset-0 z-50 bg-white/50'>
 				<div className="absolute w-full md:w-[472px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
 					<div className="bg-white rounded-lg shadow dark:bg-gray-700">
