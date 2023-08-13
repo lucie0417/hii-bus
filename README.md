@@ -3,8 +3,9 @@
 
 * 支援裝置瀏覽 | 可在手機、平板與電腦隨時隨地使用Hi Bus!
 * 快速查詢 | 全臺公車路線及動態時刻
+* 會員登入 | 登入會員收藏您常用公車路線
 * 附近站牌 | 根據您的位置定位附近公車站牌
-* 收藏最愛 | 儲存經常搭乘的公車路線
+
 
 
 ## 系統說明
@@ -29,6 +30,7 @@
 ## 使用技術
 * React
 * Tailwind CSS
+* Firebase (Database, Cloud Function)
 * RWD
 * 串接 TDX API
 * Web APIs (Geolocation API, LocalStorage API)
