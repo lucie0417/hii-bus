@@ -16,7 +16,7 @@ const SignupModal = ({ setMenuOpen, setIsSignupModalOpen, setIsLoginModalOpen })
 		e.preventDefault()
 
 		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-			return setError('Password do not match.')
+			return setError('確認密碼欄位不相符')
 		}
 		try {
 			setError('')

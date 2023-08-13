@@ -255,7 +255,7 @@ const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFav
 					<Loading />
 				</div>) : (
 					<div className="h-screen lg:h-screen lg:flex lg:flex-col">
-						<Navbar setFavorites={setFavorites}/>
+						<Navbar setFavorites={setFavorites} />
 						<div className="relative bg-white w-full h-auto 
 										md:static
 										lg:flex lg:h-full lg:p-5 lg:bg-gray-100">
@@ -292,7 +292,7 @@ const BusStatusPage = ({ CityObj, city, stopData, setStopData, favorites, setFav
 									</button>
 									<button type="button" className="w-24 h-10 border border-slate-300 rounded-full text-sm text-slate-400 tracking-wider"
 										onClick={toggleMap}>
-										展開地圖
+										{!showMap ? `展開地圖` : `收合地圖`}
 									</button>
 								</div>
 
