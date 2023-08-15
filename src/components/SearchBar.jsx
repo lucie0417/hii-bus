@@ -7,7 +7,7 @@ import cityList from "../data/cityList";
 
 
 const SearchBar = ({ routeNumber, setRouteNumber, setRouteName, city, setCity, CityObj }) => {
-	const [response, setResponse] = useState([]); // 搜出來的路線資料
+	const [searchRouteResponse, setSearchRouteResponse] = useState([]);
 	const api = `https://tdx.transportdata.tw/api/basic/v2/Bus/`;
 	const pressUnit = ['紅', '綠', '橘', '藍', '棕', '黃', 'F', 'R', 'T', '幹線', '先導', '內科', '貓空', '市民', '南軟', '跳蛙', '夜間', '小'];
 
@@ -16,8 +16,8 @@ const SearchBar = ({ routeNumber, setRouteNumber, setRouteName, city, setCity, C
 		setCity(e.target.value);
 	}
 
-	// 取得搜尋列路線號碼的值
-	function handleRouteNumber(e) {
+	// 取得 SearchBar 路線號碼的值
+	function handleRouteNumberValue(e) {
 		setRouteNumber(prevValue => {
 			return prevValue + e.target.value
 		});
@@ -36,7 +36,7 @@ const SearchBar = ({ routeNumber, setRouteNumber, setRouteName, city, setCity, C
 						},
 					});
 
-				setResponse(RoutesRes.data.filter(route => route.RouteName.Zh_tw.includes(`${routeNumber}`)));
+				setSearchRouteResponse(RoutesRes.data.filter(route => route.RouteName.Zh_tw.includes(`${routeNumber}`)));
 			}
 			if (city && routeNumber !== "") {
 				getAllRoutes();
@@ -80,17 +80,17 @@ const SearchBar = ({ routeNumber, setRouteNumber, setRouteName, city, setCity, C
 								<button
 									key={index} value={option}
 									className="w-18 h-10 text-nav-dark text-sm border border-gray-500 rounded-full hover:bg-slate-100"
-									onClick={handleRouteNumber}>
+									onClick={handleRouteNumberValue}>
 									{option}
 								</button>))}
 						</div>
 						)}
 
 					{/* 搜尋欄有字且有搜尋結果時 */}
-					{routeNumber !== "" && (response.length) > 0 &&
+					{routeNumber !== "" && (searchRouteResponse.length) > 0 &&
 						(<ul className="h-72 px-4 mt-2 overflow-y-auto divide-y divide-slate-200 
 					md:px-10 md:mt-3 md:h-60 ">
-							{response.map((route) => (
+							{searchRouteResponse.map((route) => (
 								<Link to={`/${route.City}/${route.RouteName.Zh_tw}`} key={route.RouteUID} className="block"
 									onClick={() => setRouteName(route.RouteName.Zh_tw)}>
 									<li className="flex justify-between py-3.5 md:pr-3">
@@ -107,7 +107,7 @@ const SearchBar = ({ routeNumber, setRouteNumber, setRouteName, city, setCity, C
 					}
 
 					{/* 搜尋欄有字但查無結果時 */}
-					{routeNumber !== "" && (response.length) === 0 && (
+					{routeNumber !== "" && (searchRouteResponse.length) === 0 && (
 						<div className="flex px-4 py-4 items-center justify-center lg:py-6 lg:px-6">
 							<p className="text-nav-dark tracking-wide">查無符合的結果</p>
 						</div>

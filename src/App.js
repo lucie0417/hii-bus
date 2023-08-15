@@ -15,8 +15,6 @@ function App() {
   const [stopData, setStopData] = useState([]) // 整理好的站牌資料
   const [favorites, setFavorites] = useState([])
 
-
-  // 把 city 陣列轉成中英對照的物件型態 ex. {"台北市" : "Taipei"}
   const CityObj = cityList.reduce((acc, item) => {
     const chName = item.city_zh
     const enName = item.city_en

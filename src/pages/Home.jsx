@@ -15,7 +15,7 @@ const Home = ({ routeNumber, setRouteNumber, routeName, setRouteName, city, setC
 		<>
 			<div className="h-screen">
 				<main>
-					<Navbar className=""
+					<Navbar
 						setFavorites={setFavorites} />
 
 					<div className="grid justify-items-center mt-14 gap-3 md:gap-5 lg:gap-7">
