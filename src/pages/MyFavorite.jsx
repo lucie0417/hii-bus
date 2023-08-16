@@ -29,18 +29,16 @@ const MyFavorite = ({ favorites, setFavorites }) => {
 	// 從 localStorage 讀取最愛：畫面初始渲染時讀取
 	useEffect(() => {
 		if (currentUser == null) {
-			console.log('currentUser', currentUser);
 			return
 		};
 		const storedFavorites = localStorage.getItem(currentUser.displayName);
-		// JSON.parse：JSON字串變物件
+
 		if (storedFavorites) {
 			console.log('storedFavorites', storedFavorites);
 			setFavorites(JSON.parse(storedFavorites));
 		}
 	}, [currentUser]);
 
-	console.log('MyFavorite登入狀態', isLoggedIn);
 
 	return (
 		<>
